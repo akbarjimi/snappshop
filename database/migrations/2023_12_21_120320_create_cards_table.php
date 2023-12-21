@@ -14,7 +14,7 @@ return new class extends Migration {
         Schema::create('cards', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Account::class);
-            $table->unsignedBigInteger('number');
+            $table->unsignedBigInteger('number')->unique();
             // cvv
             // expiration date
             // type [credit, debit, ...]
