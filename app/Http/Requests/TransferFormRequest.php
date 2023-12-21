@@ -24,8 +24,8 @@ class TransferFormRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'origin' => ['required','integer','numeric','digis:16', new BankCardValidationRule()],
-            'destination' => ['required','integer','numeric','digis:16', new BankCardValidationRule()],
+            'origin' => ['required','integer','numeric','digits:16','different:destination', new BankCardValidationRule],
+            'destination' => ['required','integer','numeric','digits:16','different:origin', new BankCardValidationRule],
             'amount' => ['required','integer','numeric','digits_between:5,9','min:10000','max:500000000',],
         ];
     }

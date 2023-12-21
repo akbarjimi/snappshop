@@ -17,8 +17,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware([EnsureAllDigisAreEnglish::class])->post('transfer', function (TransferFormRequest $request) {
-    // transfer operation
-    dd($request->all());
+    // check there is enough money
+    // lock the money to not spend
+    // transfer the money
+    // unlock the money
+    // send response
 });
 
 Route::get('top3', function (Request $request) {
