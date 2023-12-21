@@ -23,7 +23,9 @@ class BankCardValidationRule implements ValidationRule
         }
 
         if ($sum % 10 != 0) {
-            $fail("The :attribute is not a valid card.");
+            $fail("validation.bank_card")->translate([
+                'attribute' => $value
+            ]);
         }
     }
 }
