@@ -17,6 +17,8 @@ class TransactionSeeder extends Seeder
      */
     public function run(): void
     {
+        $dispatcher = Transaction::getEventDispatcher();
+        Transaction::unsetEventDispatcher();
         /** @var Account $account */
         foreach (Account::all() as $account) {
             $account->transactions()->create(Transaction::factory()->makeOne([
@@ -39,5 +41,6 @@ class TransactionSeeder extends Seeder
                 continue;
             }
         }
+        Transaction::setEventDispatcher($dispatcher);
     }
 }

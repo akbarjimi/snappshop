@@ -13,11 +13,14 @@ class AccountSeeder extends Seeder
      */
     public function run(): void
     {
+        $dispatcher = Account::getEventDispatcher();
+        Account::unsetEventDispatcher();
         foreach (User::all() as $user) {
             Account::factory()
                 ->count(random_int(1, 3))
                 ->for($user)
                 ->create();
         }
+        Account::setEventDispatcher($dispatcher);
     }
 }
