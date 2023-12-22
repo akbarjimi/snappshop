@@ -14,12 +14,12 @@ class Card extends Model
     use HasFactory;
     use SoftDeletes;
 
-    public function account()
+    public function account(): BelongsTo
     {
         return $this->belongsTo(Account::class);
     }
 
-    public function user()
+    public function user(): HasOneThrough
     {
         return $this->hasOneThrough(User::class, Account::class);
     }

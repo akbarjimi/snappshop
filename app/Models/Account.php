@@ -14,12 +14,12 @@ class Account extends Model
     use HasFactory;
     use SoftDeletes;
 
-    public function user()
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
-    public function cards()
+    public function cards(): HasMany
     {
         return $this->hasMany(Card::class);
     }
