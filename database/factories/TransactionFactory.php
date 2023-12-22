@@ -6,6 +6,7 @@ use App\Models\Transaction;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Str;
 
 /**
  * @extends Factory<Transaction>
@@ -30,6 +31,7 @@ class TransactionFactory extends Factory
                 Transaction::TRANSFER_CREDIT,
                 Transaction::FEE,
             ]),
+            'refID' => Str::random(),
             'description' => $this->faker->text(),
         ];
     }
@@ -38,10 +40,12 @@ class TransactionFactory extends Factory
     {
         return $this->state(function (array $attributes) {
             return [
+                'account_id' => null,
                 'card_id' => null,
-                'amount' => Config::get("transactions.fee", 5000),
+                'amount' => Config::get("transactions.fee"),
                 'type' => Transaction::FEE,
-                'description' => "fee",
+                'refID' => null,
+                'description' => trans("strings.transactions.fee.message"),
             ];
         });
     }

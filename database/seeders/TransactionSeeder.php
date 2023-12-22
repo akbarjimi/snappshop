@@ -17,16 +17,12 @@ class TransactionSeeder extends Seeder
      */
     public function run(): void
     {
-        // seed money
         /** @var Account $account */
         foreach (Account::all() as $account) {
-            $transaction = Transaction::factory()->create([
-                'account_id' => $account->id,
+            $account->transactions()->create(Transaction::factory()->makeOne([
                 'type' => Transaction::DEPOSIT,
-                'description' => "seed money",
-                'refID' => Str::random(),
-            ]);
-            $this->updateBalance($transaction);
+                'description' => "پول اولیه",
+            ])->toArray())->updateBalance();
         }
 
         $cards = Card::query()->inRandomOrder()->get();
