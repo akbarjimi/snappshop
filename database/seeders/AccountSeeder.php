@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use App\Models\Account;
 use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class AccountSeeder extends Seeder
@@ -14,11 +13,11 @@ class AccountSeeder extends Seeder
      */
     public function run(): void
     {
-        User::all()->each(function (User $user) {
+        foreach (User::all() as $user) {
             Account::factory()
-                ->count(2)
+                ->count(random_int(1, 3))
                 ->for($user)
                 ->create();
-        });
+        }
     }
 }
