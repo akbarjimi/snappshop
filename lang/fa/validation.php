@@ -187,7 +187,7 @@ return [
     */
 
     'attributes' => [
-        'origin' => 'کارت مقصد',
+        'origin' => 'کارت مبدا',
         'destination' => 'کارت مقصد',
         'amount' => 'مبلغ',
     ],

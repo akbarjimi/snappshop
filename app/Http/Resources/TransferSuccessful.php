@@ -16,12 +16,12 @@ class TransferSuccessful extends JsonResource
     {
         return [
             'success' => true,
-            'message' => 'Money transferred successfully.',
+            'message' => trans('strings.transfer_succeed.message'),
             'transaction' => [
-                'from' => $request->post('origin'),
-                'to' => $request->post('destination'),
-                'amount' => $request->post('amount'),
-                'timestamp' => now(),
+                'from' => $this->resource['from'],
+                'to' => $this->resource['to'],
+                'amount' => $this->resource['amount'],
+                'timestamp' => $this->resource['timestamp'],
             ],
         ];
     }
