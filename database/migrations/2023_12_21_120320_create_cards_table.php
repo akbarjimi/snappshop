@@ -19,6 +19,7 @@ return new class extends Migration {
             // expiration date
             // type [credit, debit, ...]
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

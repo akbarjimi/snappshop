@@ -16,6 +16,7 @@ return new class extends Migration {
             $table->foreignIdFor(User::class);
             $table->unsignedBigInteger('balance')->default(0);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
