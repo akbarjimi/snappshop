@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Services\SMS\KavehNegar;
+use App\Services\SMS\Ghasedak;
 use App\Services\SMS\SmsServiceInterface;
 use Illuminate\Support\ServiceProvider;
 
@@ -13,7 +13,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->app->bind(SmsServiceInterface::class, KavehNegar::class);
+        $this->app->bind(SmsServiceInterface::class, Ghasedak::class);
+//        $this->app->bind(SmsServiceInterface::class, KavehNegar::class);
     }
 
     /**
