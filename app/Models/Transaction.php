@@ -64,6 +64,15 @@ class Transaction extends Model
         return $this->amount;
     }
 
+    public function updateBalance(): void
+    {
+        $this->update([
+            'balance' => $this->account->transactions()
+                    ->whereKeyNot($this->id)->latest($this->getKeyName())
+                    ->first()?->balance + $this->getSignedAmount(),
+        ]);
+    }
+
     public static function card2card(Card $origin, Card $destination, int $amount)
     {
         $fee = Config::get("transactions.fee");
@@ -100,6 +109,7 @@ class Transaction extends Model
                 'description' => "from card: " . $origin->number,
                 'refID' => $refID,
             ])->updateBalance();
+
             DB::commit();
             return true;
         } catch (Throwable $throwable) {
@@ -107,15 +117,5 @@ class Transaction extends Model
             report($throwable);
             return false;
         }
-    }
-
-
-    public function updateBalance(): void
-    {
-        $this->update([
-            'balance' => $this->account->transactions()
-                    ->whereKeyNot($this->id)->latest($this->getKeyName())
-                    ->first()?->balance + $this->getSignedAmount(),
-        ]);
     }
 }
