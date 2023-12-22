@@ -14,6 +14,11 @@ class Card extends Model
     use HasFactory;
     use SoftDeletes;
 
+    protected $fillable = [
+        'account_id',
+        'number',
+    ];
+
     public function account(): BelongsTo
     {
         return $this->belongsTo(Account::class);

@@ -14,6 +14,10 @@ class Account extends Model
     use HasFactory;
     use SoftDeletes;
 
+    protected $fillable = [
+        'user_id',
+    ];
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
