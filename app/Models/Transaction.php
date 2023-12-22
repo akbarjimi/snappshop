@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Events\TransactionSavedEvent;
 use App\Exceptions\INSUFFICIENT_FUNDS;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -20,12 +21,24 @@ class Transaction extends Model
 
     const DEPOSIT = 10;
     const WITHDRAWAL = 20;
-    // to customer
     const TRANSFER_DEBIT = 30;
-
-    // from customer
     const TRANSFER_CREDIT = 40;
     const FEE = 50;
+
+    protected $fillable = [
+        'account_id',
+        'card_id',
+        'amount',
+        'type',
+        'balance',
+        'refID',
+        'description',
+    ];
+
+
+    protected $dispatchesEvents = [
+        'created' => TransactionSavedEvent::class,
+    ];
 
     public function card(): BelongsTo
     {

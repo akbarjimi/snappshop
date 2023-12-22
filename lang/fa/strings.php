@@ -13,6 +13,11 @@ return [
     'transactions' => [
         'fee' => [
             'message' => 'کارمزد انتقال کارت به کارت',
+        ],
+        'notifications' => [
+            'debit' => ":name عزیز، مبلغ :amount ریال از کارت :card برداشت شد.",
+            'credit' => ":name عزیز، مبلغ :amount ریال به کارت :card واریز شد.",
+            'fee' => ":name عزیز، مبلغ :amount ریال از حساب شماره :account کارمزد برداشت شد.",
         ]
     ],
 ];
