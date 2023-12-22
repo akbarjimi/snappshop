@@ -21,6 +21,11 @@ class Card extends Model
 
     public function user()
     {
-        return $this->through('account')->has('user');
+        return $this->hasOneThrough(User::class, Account::class);
+    }
+
+    public function transactions(): HasMany
+    {
+        return $this->hasMany(Transaction::class);
     }
 }

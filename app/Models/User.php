@@ -50,6 +50,11 @@ class User extends Authenticatable
 
     public function cards()
     {
-        return $this->through('accounts')->has('cards');
+        return $this->hasManyThrough(Card::class, Account::class);
+    }
+
+    public function transactions(): HasManyThrough
+    {
+        return $this->hasManyThrough(Transaction::class, Account::class);
     }
 }

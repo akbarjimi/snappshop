@@ -3,7 +3,6 @@
 namespace Database\Factories;
 
 use App\Models\Account;
-use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -19,8 +18,7 @@ class AccountFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => User::factory(),
-            'balance' => random_int(14999, 500000001),
+            'user_id' => null,
         ];
     }
 }

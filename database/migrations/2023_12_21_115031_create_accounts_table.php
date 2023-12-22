@@ -14,7 +14,6 @@ return new class extends Migration {
         Schema::create('accounts', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(User::class);
-            $table->unsignedBigInteger('balance')->default(0);
             $table->timestamps();
             $table->softDeletes();
         });

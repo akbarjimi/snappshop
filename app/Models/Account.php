@@ -18,4 +18,14 @@ class Account extends Model
     {
         return $this->hasMany(Card::class);
     }
+
+    public function transactions(): HasMany
+    {
+        return $this->hasMany(Transaction::class);
+    }
+
+    public function getBalance(): int
+    {
+        return $this->transactions()->latest($this->getKeyName())->first()?->balance ?? 0;
+    }
 }
