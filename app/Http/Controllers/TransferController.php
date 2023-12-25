@@ -29,7 +29,7 @@ class TransferController extends Controller
                 'from' => $originCard->number,
                 'to' => $destinationCard->number,
                 'amount' => $request->post('amount'),
-                'timestamp' => now()->toString(),
+                'timestamp' => now()->toDateTimeString(),
             ]);
         } catch (INSUFFICIENT_FUNDS $exception) {
             DB::rollBack();
